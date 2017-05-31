@@ -65,7 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        FH.pushRegister(deviceToken: deviceToken, success: { res in
+        let pushConfig = PushConfig()
+        pushConfig.alias = "test"
+        FH.pushRegister(deviceToken: deviceToken, config: pushConfig, success: { res in
             let notification = Notification(name: Notification.Name(rawValue: "success_registered"), object: nil)
             NotificationCenter.default.post(notification as Notification)
             print("Unified Push registration successful")
